@@ -3,7 +3,7 @@
 // Its not possible to use interactive features like event handlers, state, or effects in server components.
 
 // To create a client component, you can use the client component API.
-"use client"
+// "use client"
 
 // import { useState } from "react"
 import Header from "./_components/header"
@@ -14,13 +14,18 @@ import { Card, CardContent } from "./_components/ui/card"
 import Image from "next/image"
 import { Badge } from "./_components/ui/badge"
 import { Avatar, AvatarImage } from "./_components/ui/avatar"
+import { db } from "./_lib/prisma"
 
-const Home = () => {
+const Home = async () => {
   // const [] = useState()
 
   // return <h1 className="bg-red mb-5 text-red-500">Red text</h1>
 
   // return <Button>Click me</Button>
+  const barbershops = await db.barbershop.findMany({})
+
+  console.log(barbershops[0])
+
   return (
     <div>
       {/* HEADER */}
@@ -50,6 +55,10 @@ const Home = () => {
         </div>
 
         {/* AGENDAMENTO */}
+        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
+          Agendamentos
+        </h2>
+
         <Card className="mt-6">
           <CardContent className="flex justify-between p-0">
             {/* ESQUERDA */}
