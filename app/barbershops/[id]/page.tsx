@@ -29,6 +29,8 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
     return notFound()
   }
 
+  console.log(barbershop)
+
   return (
     <div>
       {/* IMAGEM */}
@@ -95,14 +97,18 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
 
         <div className="space-y-3">
           {barbershop?.services.map((service) => (
-            <ServiceItem key={service.id} service={service} />
+            <ServiceItem
+              key={service.id}
+              barbershop={barbershop}
+              service={service}
+            />
           ))}
         </div>
       </div>
 
       {/* CONTATO */}
       <div className="space-y-3 p-5">
-        {barbershop.phone?.map((phone) => (
+        {barbershop.phones?.map((phone) => (
           <PhoneItem key={phone} phone={phone} />
         ))}
       </div>
